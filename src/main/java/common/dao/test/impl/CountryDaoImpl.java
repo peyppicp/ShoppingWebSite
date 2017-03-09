@@ -11,7 +11,7 @@ import java.io.Serializable;
 /**
  * Created by peyppicp on 2017/3/8.
  */
-@Repository
+//@Repository
 public class CountryDaoImpl implements ICountryDao {
 
     @Autowired

@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "city")
-@ToString(exclude = {"province","districts"})
+@ToString(exclude = {"province", "districts"})
 public class City {
 
     @Id
@@ -27,7 +27,7 @@ public class City {
     @JoinColumn(name = "prov_num")
     private Province province;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,targetEntity = District.class)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = District.class)
     @JoinColumn(name = "city_num")
     private List<District> districts;
 }
