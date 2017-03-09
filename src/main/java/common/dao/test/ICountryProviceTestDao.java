@@ -9,7 +9,7 @@ import common.entity.system.Province;
  */
 public interface ICountryProviceTestDao {
 
-    int test(Country country, Province province,City city);
+    int test(Country country, Province province, City city);
 
     void test1();
 }

@@ -1,6 +1,5 @@
 package common.dao.test;
 
-import common.entity.TestObject;
 import common.entity.system.Country;
 
 /**

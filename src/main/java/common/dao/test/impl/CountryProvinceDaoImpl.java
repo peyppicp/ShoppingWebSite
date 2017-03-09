@@ -21,7 +21,7 @@ public class CountryProvinceDaoImpl implements ICountryProviceTestDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public int test(Country country, Province province,City city) {
+    public int test(Country country, Province province, City city) {
         Session currentSession = sessionFactory.getCurrentSession();
         currentSession.save(country);
         currentSession.save(province);

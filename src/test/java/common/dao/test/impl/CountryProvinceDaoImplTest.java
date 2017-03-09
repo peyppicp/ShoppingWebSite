@@ -12,11 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.Column;
-
 import java.math.BigDecimal;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by peyppicp on 2017/3/8.
@@ -43,12 +39,12 @@ public class CountryProvinceDaoImplTest {
         city.setProvince(province);
         city.setCity_num(new BigDecimal(3));
         city.setCity_name("shanghai");
-        iCountryProviceTestDao.test(country,province,city);
+        iCountryProviceTestDao.test(country, province, city);
     }
 
     @Test
     @Transactional
-    public void test2(){
+    public void test2() {
         iCountryProviceTestDao.test1();
     }
 

@@ -12,8 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by peyppicp on 2017/3/8.
  */

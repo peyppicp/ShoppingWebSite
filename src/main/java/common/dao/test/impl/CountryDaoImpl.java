@@ -4,7 +4,6 @@ import common.dao.test.ICountryDao;
 import common.entity.system.Country;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
 

@@ -7,7 +7,6 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.enterprise.context.Destroyed;
 import java.io.Serializable;
 import java.util.List;
 
