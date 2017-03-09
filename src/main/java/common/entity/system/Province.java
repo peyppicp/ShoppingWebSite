@@ -1,10 +1,12 @@
 package common.entity.system;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.persistence.metamodel.Type;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * Created by peyppicp on 2017/3/8.
@@ -12,6 +14,7 @@ import java.math.BigDecimal;
 @Data
 @Entity
 @Table(name = "province")
+@ToString(exclude = {"country","cities"})
 public class Province {
 
     @Id
@@ -24,4 +27,8 @@ public class Province {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Country.class)
     @JoinColumn(name = "country_num")
     private Country country;
+
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,targetEntity = City.class)
+    @JoinColumn(name = "prov_num")
+    private List<City> cities;
 }

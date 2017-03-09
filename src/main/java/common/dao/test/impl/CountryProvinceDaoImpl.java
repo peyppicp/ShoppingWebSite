@@ -31,8 +31,8 @@ public class CountryProvinceDaoImpl implements ICountryProviceTestDao {
     public void test1() {
         Session currentSession = sessionFactory.getCurrentSession();
         Country country = currentSession.get(Country.class, new BigDecimal(1));
-        Province province = currentSession.get(Province.class, new BigDecimal(2));
-        City city = currentSession.get(City.class, new BigDecimal(3));
+//        Province province = currentSession.get(Province.class, new BigDecimal(2));
+//        City city = currentSession.get(City.class, new BigDecimal(3));
         System.out.println();
     }
 }
