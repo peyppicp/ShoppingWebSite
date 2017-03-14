@@ -1,25 +1,23 @@
-package common.dao.system.impl;
+package service.system.impl;
 
-import common.dao.system.ICityDao;
-import common.entity.system.City;
+import common.entity.system.User;
+import service.system.IUserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
+import utils.PrimaryKeyGenerator;
 
 /**
- * Created by peyppicp on 2017/3/9.
+ * Created by peyppicp on 2017/3/14.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:/dev/spring/spring.xml"})
-public class CityDaoImplTest {
+public class UserServiceImplTest {
 
     @Autowired
-    private ICityDao iCityDao;
+    private IUserService iUserService;
 
     @Test
     public void getEntity() throws Exception {
@@ -43,14 +41,14 @@ public class CityDaoImplTest {
 
     @Test
     public void insertEntity() throws Exception {
-
+        User user = new User();
+        user.setUser_id(PrimaryKeyGenerator.uuid());
+        iUserService.insertEntity(user);
     }
 
     @Test
-    @Transactional
     public void getEntities() throws Exception {
-        List<City> entities = iCityDao.getEntities();
-        System.out.println();
+
     }
 
     @Test

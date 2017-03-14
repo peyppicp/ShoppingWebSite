@@ -18,7 +18,7 @@ import java.math.BigDecimal;
  * Created by peyppicp on 2017/3/8.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:/dev/spring/spring-dao.xml"})
+@ContextConfiguration({"classpath:/dev/spring/spring.xml"})
 public class CountryProvinceDaoImplTest {
 
     @Autowired

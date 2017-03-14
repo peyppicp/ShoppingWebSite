@@ -5,13 +5,11 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by peyppicp on 2017/3/9.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:/dev/spring/spring-dao.xml"})
+@ContextConfiguration({"classpath:/dev/spring/spring.xml"})
 public class DistrictDaoImplTest {
     @Test
     public void getEntity() throws Exception {
