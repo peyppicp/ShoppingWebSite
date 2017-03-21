@@ -1,16 +1,19 @@
 package common.dao.system.impl;
 
+import com.google.common.base.Stopwatch;
 import common.dao.system.IUserDao;
 import common.entity.system.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import utils.PrimaryKeyGenerator;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by peyppicp on 2017/3/14.
@@ -44,9 +47,16 @@ public class UserDaoImplTest {
 
     @Test
     @Transactional
+    @Rollback(value = false)
     public void insertEntity() throws Exception {
         User user = new User();
         user.setUser_id(PrimaryKeyGenerator.uuid());
+        user.setUser_account("peyppicp");
+        user.setUser_password("1234");
+        user.setUser_credit(0);
+        user.setUser_key("");
+        user.setUser_points(0);
+        user.setUser_seller_status(true);
         iUserDao.insertEntity(user);
     }
 
@@ -60,6 +70,19 @@ public class UserDaoImplTest {
     @Test
     public void getEntities1() throws Exception {
 
+    }
+
+    @Test
+    @Transactional
+    public void isExist() throws Exception {
+        User user = new User();
+        user.setUser_account("peyppicp");
+        Stopwatch started = Stopwatch.createStarted();
+        for (int i = 0; i < 1000; i++) {
+            boolean exist = iUserDao.isExist(user);
+            System.out.println(exist);
+        }
+        System.out.println(started.stop().elapsed(TimeUnit.MILLISECONDS));
     }
 
 }

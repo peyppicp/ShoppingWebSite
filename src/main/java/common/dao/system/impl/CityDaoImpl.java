@@ -19,6 +19,11 @@ public class CityDaoImpl implements ICityDao {
     @Autowired
     private SessionFactory sessionFactory;
 
+    //    TODO
+    public boolean isExist(City city) {
+        return false;
+    }
+
     public City getEntity(Serializable id) {
         return sessionFactory.getCurrentSession().get(City.class, id);
     }

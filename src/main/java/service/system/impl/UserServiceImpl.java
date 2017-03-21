@@ -1,7 +1,9 @@
 package service.system.impl;
 
+import com.google.common.collect.ImmutableMap;
 import common.dao.system.IUserDao;
 import common.entity.system.User;
+import common.enums.RegisterEnum;
 import service.system.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by peyppicp on 2017/3/14.
@@ -18,6 +21,25 @@ public class UserServiceImpl implements IUserService {
 
     @Autowired
     private IUserDao iUserDao;
+
+    @Transactional
+    public RegisterEnum register(User user) {
+        try {
+            boolean isExist = iUserDao.isExist(user);
+            if (isExist) {
+                return RegisterEnum.EXISTED;
+            }
+            iUserDao.insertEntity(user);
+            return RegisterEnum.SUCCESS;
+        } catch (Exception e) {
+            return RegisterEnum.UNKNOWEN;
+        }
+    }
+
+    @Transactional
+    public User login(User user) {
+        return iUserDao.getEntity(user);
+    }
 
     @Transactional
     public User getEntity(Serializable id) {

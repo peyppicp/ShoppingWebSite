@@ -9,6 +9,14 @@ import java.util.List;
 public interface BasicDao<T> {
 
     /**
+     * Check out the existence of the entity.
+     *
+     * @param t
+     * @return
+     */
+    boolean isExist(T t);
+
+    /**
      * No lazy load.Use serializable to get entity.
      *
      * @param id

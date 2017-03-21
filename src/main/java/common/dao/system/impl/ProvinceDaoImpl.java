@@ -19,6 +19,11 @@ public class ProvinceDaoImpl implements IProvinceDao {
     @Autowired
     private SessionFactory sessionFactory;
 
+    //    TODO
+    public boolean isExist(Province province) {
+        return false;
+    }
+
     public Province getEntity(Serializable id) {
         return sessionFactory.getCurrentSession().get(Province.class, id);
     }

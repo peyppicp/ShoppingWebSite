@@ -19,6 +19,11 @@ public class DistrictDaoImpl implements IDistrictDao {
     @Autowired
     private SessionFactory sessionFactory;
 
+    //    TODO
+    public boolean isExist(District district) {
+        return false;
+    }
+
     public District getEntity(Serializable id) {
         return sessionFactory.getCurrentSession().get(District.class, id);
     }

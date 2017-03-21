@@ -19,6 +19,11 @@ public class CountryDaoImpl implements ICountryDao {
     @Autowired
     private SessionFactory sessionFactory;
 
+    //    TODO
+    public boolean isExist(Country country) {
+        return false;
+    }
+
     public Country getEntity(Serializable id) {
         return sessionFactory.getCurrentSession().get(Country.class, id);
     }

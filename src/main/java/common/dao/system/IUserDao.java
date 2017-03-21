@@ -7,4 +7,6 @@ import common.entity.system.User;
  * Created by peyppicp on 2017/3/14.
  */
 public interface IUserDao extends BasicDao<User> {
+
+    User getEntity(User user);
 }
