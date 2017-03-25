@@ -24,6 +24,10 @@ public class ProvinceDaoImpl implements IProvinceDao {
         return false;
     }
 
+    public Province getEntity(Province province) {
+        return null;
+    }
+
     public Province getEntity(Serializable id) {
         return sessionFactory.getCurrentSession().get(Province.class, id);
     }

@@ -24,6 +24,10 @@ public class CountryDaoImpl implements ICountryDao {
         return false;
     }
 
+    public Country getEntity(Country country) {
+        return null;
+    }
+
     public Country getEntity(Serializable id) {
         return sessionFactory.getCurrentSession().get(Country.class, id);
     }

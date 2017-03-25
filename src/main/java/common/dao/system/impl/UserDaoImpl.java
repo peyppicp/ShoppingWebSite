@@ -35,6 +35,22 @@ public class UserDaoImpl implements IUserDao {
         return true;
     }
 
+    public User getEntity(User user) {
+        List<User> list = null;
+        if (null != user.getUser_account() || "".equals(user.getUser_account())) {
+            String hql = "from User where user_account = ?1";
+            Query query = sessionFactory.getCurrentSession().createQuery(hql);
+            query.setParameter("1", user.getUser_account());
+            list = query.list();
+            if (list.size() == 1) {
+                return list.get(0);
+            } else {
+                return null;
+            }
+        }
+        return null;
+    }
+
     public User getEntity(Serializable id) {
         return sessionFactory.getCurrentSession().get(User.class, id);
     }
@@ -57,12 +73,12 @@ public class UserDaoImpl implements IUserDao {
         return sessionFactory.getCurrentSession().save(user);
     }
 
+
     public List<User> getEntities() {
         String hql = "from User";
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
         return query.list();
     }
-
 
     public List<User> getEntities(int from, int size) {
         String hql = "from User";
@@ -70,21 +86,5 @@ public class UserDaoImpl implements IUserDao {
         query.setFirstResult(from);
         query.setMaxResults(size);
         return query.list();
-    }
-
-    public User getEntity(User user) {
-        List<User> list = null;
-        if (null != user.getUser_account() || "".equals(user.getUser_account())) {
-            String hql = "from User where user_account = ?1";
-            Query query = sessionFactory.getCurrentSession().createQuery(hql);
-            query.setParameter("1", user.getUser_account());
-            list = query.list();
-            if (list.size() == 1) {
-                return list.get(0);
-            } else {
-                return null;
-            }
-        }
-        return null;
     }
 }

@@ -2,6 +2,7 @@ package common.dao.system.impl;
 
 import com.google.common.base.Stopwatch;
 import common.dao.system.IUserDao;
+import common.entity.goods.Product;
 import common.entity.system.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,8 +27,11 @@ public class UserDaoImplTest {
     private IUserDao iUserDao;
 
     @Test
+    @Transactional
     public void getEntity() throws Exception {
-
+        User entity = iUserDao.getEntity("f571bdb3-d9d4-4055-a305-8d30cbd53881");
+        List<Product> productList = entity.getProductList();
+        System.out.println();
     }
 
     @Test

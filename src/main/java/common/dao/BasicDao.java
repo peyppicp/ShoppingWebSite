@@ -17,6 +17,14 @@ public interface BasicDao<T> {
     boolean isExist(T t);
 
     /**
+     * Get T from database.
+     *
+     * @param t
+     * @return
+     */
+    T getEntity(T t);
+
+    /**
      * No lazy load.Use serializable to get entity.
      *
      * @param id

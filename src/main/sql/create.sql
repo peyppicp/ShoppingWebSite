@@ -420,3 +420,25 @@ REFERENCES user (user_id)
   ON DELETE RESTRICT
   ON UPDATE RESTRICT;
 
+# CREATE TABLE order_item(
+#   `order_item_id` VARCHAR(36) PRIMARY KEY NOT NULL,
+#   `order_id` VARCHAR(36),
+#   `item_id` VARCHAR(36),
+#   `item_num` INT
+# );
+
+# CREATE TABLE item_comment(
+#   `COMMENT_ID` VARCHAR(36) NOT NULL PRIMARY KEY ,
+#   `item_id` VARCHAR(36) NOT NULL ,
+#   `size` VARCHAR(255) NOT NULL ,
+#   `product_id` VARCHAR(36) NOT NULL ,
+#   `user_id` VARCHAR(36) NULL ,
+#   `comment1_content` TEXT NULL ,
+#   `comment1_time` DATETIME NULL ,
+#   `comment2_content` TEXT NULL ,
+#   `comment2_time` DATETIME,
+#   FOREIGN KEY (`item_id`) REFERENCES item (`item_id`),
+#   FOREIGN KEY (`product_id`) REFERENCES product (`product_id`),
+#   FOREIGN KEY (`user_id`) REFERENCES user (`user_id`)
+# );
+

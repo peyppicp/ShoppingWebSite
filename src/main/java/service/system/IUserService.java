@@ -12,5 +12,5 @@ public interface IUserService extends BasicService<User> {
 
     RegisterEnum register(User user);
 
-    User login(User user);
+    boolean isExist(User user);
 }

@@ -9,6 +9,14 @@ import java.util.List;
 public interface BasicService<T> {
 
     /**
+     * Get entity from database.
+     *
+     * @param t
+     * @return
+     */
+    T getEntity(T t);
+
+    /**
      * No lazy load.Use serializable to get entity.
      *
      * @param id

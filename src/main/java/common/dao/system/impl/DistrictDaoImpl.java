@@ -24,6 +24,10 @@ public class DistrictDaoImpl implements IDistrictDao {
         return false;
     }
 
+    public District getEntity(District district) {
+        return null;
+    }
+
     public District getEntity(Serializable id) {
         return sessionFactory.getCurrentSession().get(District.class, id);
     }

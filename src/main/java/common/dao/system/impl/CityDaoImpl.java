@@ -24,6 +24,10 @@ public class CityDaoImpl implements ICityDao {
         return false;
     }
 
+    public City getEntity(City city) {
+        return null;
+    }
+
     public City getEntity(Serializable id) {
         return sessionFactory.getCurrentSession().get(City.class, id);
     }

@@ -37,7 +37,20 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Transactional
-    public User login(User user) {
+    public boolean isExist(User user) {
+        if ("".equals(user.getUser_id()) || null == user.getUser_id()) {
+            return iUserDao.isExist(user);
+        } else {
+            User entity = iUserDao.getEntity(user.getUser_id());
+            if (entity == null) {
+                return false;
+            }
+            return true;
+        }
+    }
+
+    @Transactional
+    public User getEntity(User user) {
         return iUserDao.getEntity(user);
     }
 

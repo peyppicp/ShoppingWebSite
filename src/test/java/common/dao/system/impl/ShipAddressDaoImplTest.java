@@ -1,28 +1,30 @@
-package service.system.impl;
+package common.dao.system.impl;
 
-import common.entity.system.User;
-import service.system.IUserService;
+import common.dao.system.IShipAddressDao;
+import common.entity.system.ShipAddress;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 import utils.PrimaryKeyGenerator;
 
+import static org.junit.Assert.*;
+
 /**
- * Created by peyppicp on 2017/3/14.
+ * Created by peyppicp on 2017/3/25.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:/dev/spring/spring.xml"})
-public class UserServiceImplTest {
+public class ShipAddressDaoImplTest {
 
     @Autowired
-    private IUserService iUserService;
+    private IShipAddressDao iShipAddressDao;
 
     @Test
     public void getEntity() throws Exception {
-        User entity = iUserService.getEntity("f571bdb3-d9d4-4055-a305-8d30123");
-        System.out.println(entity);
+
     }
 
     @Test
@@ -41,10 +43,11 @@ public class UserServiceImplTest {
     }
 
     @Test
+    @Transactional
     public void insertEntity() throws Exception {
-        User user = new User();
-        user.setUser_id(PrimaryKeyGenerator.uuid());
-        iUserService.insertEntity(user);
+        ShipAddress shipAddress = new ShipAddress();
+        shipAddress.setAddr_id(PrimaryKeyGenerator.uuid());
+        iShipAddressDao.insertEntity(shipAddress);
     }
 
     @Test
