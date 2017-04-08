@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>后台管理系统登陆</title>
+    <script src="js/jquery-3.1.1.js"></script>
+    <script src="dist/jquery.validate.js"></script>
+    <script src="dist/localization/messages_zh.js"></script>
+    <script src="js/easyui/jquery.easyui.min.js"></script>
+    <script src="js/easyui/easyui-lang-zh_CN.js"></script>
+    <link rel="stylesheet" href="css/easyui/default/easyui.css">
+    <link rel="stylesheet" href="css/easyui/icon.css">
+    <style>
+        body {
+            text-align: center;
+            margin-top: 150px;
+        }
+
+        .panel {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>登陆</h2>
+    <div style="margin:20px 0;"></div>
+    <div class="easyui-panel" title="后台管理系统" style="width:420px">
+        <div style="padding:10px 60px 20px 60px">
+            <div style="text-align:center;padding:5px">
+                <form id="ff" method="post" action="/back-login.action">
+                    <table cellpadding="5">
+                        <tr>
+                            <td>用户名:</td>
+                            <td><input class="easyui-textbox" type="text" name="name" data-options="required:true"></td>
+                        </tr>
+                        <tr>
+                            <td>密码:</td>
+                            <td><input class="easyui-textbox" type="text" name="password"
+                                       data-options="required:true,validType:'password'"></td>
+                        </tr>
+                        <tr>
+                            <td>授权码（可选）:</td>
+                            <td><input class="easyui-textbox" type="text" name="subject"></td>
+                        </tr>
+                    </table>
+                    <input type="submit" class="easyui-linkbutton" value="登陆">
+                    <input type="button" class="easyui-linkbutton" onclick="clearForm()" value="清除">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function clearForm() {
+            $('#ff').form("clear");
+        }
+    </script>
+</div>
+
+</body>
+</html>

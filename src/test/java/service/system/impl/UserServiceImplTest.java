@@ -1,6 +1,8 @@
 package service.system.impl;
 
+import common.entity.goods.Product;
 import common.entity.system.User;
+import org.springframework.test.annotation.Rollback;
 import service.system.IUserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import utils.PrimaryKeyGenerator;
+
+import java.util.List;
 
 /**
  * Created by peyppicp on 2017/3/14.
@@ -36,8 +40,11 @@ public class UserServiceImplTest {
     }
 
     @Test
+    @Rollback(value = false)
     public void deleteEntity() throws Exception {
-
+        List<User> entities = iUserService.getEntities();
+        User user = entities.get(1);
+        iUserService.deleteEntity(user);
     }
 
     @Test
@@ -49,7 +56,10 @@ public class UserServiceImplTest {
 
     @Test
     public void getEntities() throws Exception {
-
+        List<User> entities = iUserService.getEntities();
+        User user = entities.get(1);
+        iUserService.deleteEntity(user);
+        System.out.println();
     }
 
     @Test

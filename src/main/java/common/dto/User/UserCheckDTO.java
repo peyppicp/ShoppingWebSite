@@ -10,7 +10,7 @@ public class UserCheckDTO {
 
     private String message;
 
-    private String error_message;
+    private String detailed_message;
 
     private int status;
 }

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery-3.1.1.js"></script>
+    <script src="../js/npm.js"></script>
+    <script src="../js/tether.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/custom/boot-back-index.css">
+    <script src="../js/ue/ueditor.config.js"></script>
+    <script src="../js/ue/ueditor.all.js"></script>
+    <script src="../js/custom/back-common.js"></script>
+
+</head>
+<body>
+
+<div class="body-container">
+    <div class="label-head">
+        <span>这是一个标题栏</span>
+        <span>这是一个标题栏</span>
+        <span>这是一个标题栏</span>
+        <span>这是一个标题栏</span>
+    </div>
+    <div class="nav-left">
+        <ul class="nav nav-pills nav-justified flex-column">
+            <li class="nav-item">
+                <a class="nav-link dropdown-toggle mainA" data-toggle="collapse" href="#collapse1" role="button"
+                   aria-haspopup="true" aria-expanded="false">信息管理</a>
+                <div id="collapse1" class="collapse">
+                    <a class="nav-link subA active" href="#">基本信息管理</a>
+                    <a class="nav-link subA" href="#">高级信息管理</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link dropdown-toggle mainA" href="#collapse2" role="button" data-toggle="collapse"
+                   aria-haspopup="true"
+                   aria-expanded="false" onclick="productManage()">产品管理</a>
+                <div id="collapse2" class="collapse">
+                    <a class="nav-link subA" href="javascript:void(0);" onclick="showNewProductPage()">添加新产品</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link dropdown-toggle mainA" href="#collapse3" role="button" data-toggle="collapse"
+                   aria-haspopup="true"
+                   aria-expanded="false" onclick="itemManage()">商品管理</a>
+                <div id="collapse3" class="collapse">
+                    <a class="nav-link subA" href="javascript:void(0);" onclick="showNewItemPage()">添加新商品</a>
+                </div>
+            </li>
+            <li class="nav-item mainA">
+                <a class="nav-link" href="#">订单管理</a>
+            </li>
+        </ul>
+    </div>
+    <div class="main-content">
+
+        <div id="productManageDiv" hidden>
+
+            <div id="productTableDiv" hidden>
+                <!--product table-->
+                <table class="table">
+                    <thead class="thead-inverse">
+                    <tr>
+                        <th>#</th>
+                        <th>产品ID</th>
+                        <th>产品名称</th>
+                        <th>产品编号</th>
+                        <th>产品描述</th>
+                        <th>产品广告</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div id="productPreviewDiv" hidden>
+
+            </div>
+
+            <div id="newProductDiv" hidden>
+                <div class="form-group row">
+                    <label for="inputProductName" class="col-sm-2 col-form-label text-center">产品名称</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputProductName" placeholder="请输入用产品名称"
+                               name="productName" required maxlength="36">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputProductNumber" class="col-sm-2 col-form-label text-center">产品数量</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputProductNumber" placeholder="请输入产品数量"
+                               name="productNumber" required maxlength="36">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputProductDescription" class="col-sm-2 col-form-label text-center">产品描述</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputProductDescription" placeholder="请输入产品描述"
+                               name="productDescription" required maxlength="36">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="ueditor" class="col-sm-2 col-form-label text-center">产品广告</label>
+                    <div class="col-sm-10">
+                        <script id="ueditor" type="text/plain" style="min-height:500px;"></script>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputSubmit" class="col-sm-2 col-form-label text-center"></label>
+                    <div class="col-sm-10">
+                        <a id="inputSubmit" href="javascript:void(0);" class="btn btn-outline-primary"
+                           onclick="newProduct()">创建</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="itemManageDiv" hidden>
+
+            <div id="productListDiv" hidden>
+                <a class="btn btn-outline-primary" data-toggle="collapse" href="#productList" aria-expanded="false"
+                   aria-controls="productList" onclick="getProductList()">
+                    获取产品ID
+                </a>
+                <div id="productList">
+                    <table class="table">
+                        <thead class="thead-inverse">
+                        <tr>
+                            <th>#</th>
+                            <th>产品ID</th>
+                            <th>产品名称</th>
+                            <th>产品编号</th>
+                            <th>产品描述</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="newItemDiv" hidden>
+                <div class="form-group row">
+                    <label for="inputProductItemID" class="col-sm-2 col-form-label text-center">产品ID</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control disabled" id="inputProductItemID"
+                               name="productName" required readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputItemPrice" class="col-sm-2 col-form-label text-center">商品价格</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputItemPrice" placeholder="请输入用产品价格"
+                               name="productName" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputItemNumber" class="col-sm-2 col-form-label text-center">商品数量</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputItemInventory" placeholder="请输入商品数量"
+                               name="productNumber" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputItemType" class="col-sm-2 col-form-label text-center">商品种类</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputItemType" placeholder="请输入商品种类"
+                               name="productDescription" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputItemSize" class="col-sm-2 col-form-label text-center">商品大小</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputItemSize" placeholder="请输入商品大小"
+                               name="productDescription" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputItemBreakable" class="col-sm-2 col-form-label text-center">商品易碎程度</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputItemBreakable" placeholder="请输入商品易碎程度"
+                               name="productDescription" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputSubmit" class="col-sm-2 col-form-label text-center"></label>
+                    <div class="col-sm-10">
+                        <a id="inputItemSubmit" href="javascript:void(0);" class="btn btn-outline-primary"
+                           onclick="newItem()">创建</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div>
+            <p>其他内容</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

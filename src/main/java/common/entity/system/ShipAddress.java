@@ -41,7 +41,7 @@ public class ShipAddress {
     @Column(name = "buyer_name")
     private String buyer_name;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = User.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = User.class)
     @JoinColumn(name = "user_id")
     private User user;
 }

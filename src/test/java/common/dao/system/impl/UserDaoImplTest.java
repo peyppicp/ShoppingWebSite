@@ -28,6 +28,15 @@ public class UserDaoImplTest {
 
     @Test
     @Transactional
+    public void test() {
+        User user = new User();
+        user.setUser_account("peyppicp");
+        User entity = iUserDao.getEntity(user);
+        System.out.println();
+    }
+
+    @Test
+    @Transactional
     public void getEntity() throws Exception {
         User entity = iUserDao.getEntity("f571bdb3-d9d4-4055-a305-8d30cbd53881");
         List<Product> productList = entity.getProductList();
@@ -45,8 +54,12 @@ public class UserDaoImplTest {
     }
 
     @Test
+    @Transactional()
     public void deleteEntity() throws Exception {
-
+        User user = new User();
+        user.setUser_account("peyppicp");
+        User entity = iUserDao.getEntity(user);
+        iUserDao.deleteEntity(entity);
     }
 
     @Test

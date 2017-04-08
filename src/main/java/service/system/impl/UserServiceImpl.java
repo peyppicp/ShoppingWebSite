@@ -1,17 +1,15 @@
 package service.system.impl;
 
-import com.google.common.collect.ImmutableMap;
 import common.dao.system.IUserDao;
 import common.entity.system.User;
 import common.enums.RegisterEnum;
-import service.system.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import service.system.IUserService;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by peyppicp on 2017/3/14.

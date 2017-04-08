@@ -1,7 +1,6 @@
 package cache;
 
 import com.google.common.base.Stopwatch;
-import org.hibernate.mapping.PrimaryKey;
 import org.junit.Test;
 import utils.PrimaryKeyGenerator;
 

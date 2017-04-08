@@ -3,7 +3,6 @@ package common.entity.deal;
 import common.entity.system.User;
 import lombok.Data;
 import lombok.ToString;
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -53,7 +52,7 @@ public class Order {
     @Type(type = "text")
     private String payment_detail;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = User.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = User.class)
     @JoinColumn(name = "buyer_id")
     private User buyer;
 
@@ -63,7 +62,7 @@ public class Order {
 
     private String buyer_name;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = User.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = User.class)
     @JoinColumn(name = "seller_id")
     private User seller;
 
@@ -73,7 +72,7 @@ public class Order {
 
     private String seller_name;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Delivery.class)
-    @JoinColumn(name = "order_id")
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = Delivery.class, mappedBy = "order")
+//    @JoinColumn(name = "order_id")
     private List<Delivery> deliveryList;
 }

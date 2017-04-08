@@ -17,12 +17,12 @@ import java.io.Serializable;
 public class Deliver implements Serializable {
 
     @Id
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Item.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Item.class)
     @JoinColumn(name = "item_id")
     private Item item;
 
     @Id
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Delivery.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Delivery.class)
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 }

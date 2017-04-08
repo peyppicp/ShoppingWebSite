@@ -65,27 +65,27 @@ public class User {
     @Column(name = "user_key")
     private String user_key;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = ShipAddress.class)
-    @JoinColumn(name = "user_id")
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = ShipAddress.class, mappedBy = "user")
+//    @JoinColumn(name = "user_id")
     private List<ShipAddress> shipAddresses;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Product.class)
-    @JoinColumn(name = "seller_id")
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, targetEntity = Product.class, mappedBy = "user")
+//    @JoinColumn(name = "seller_id")
     private List<Product> productList;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Cart.class)
-    @JoinColumn(name = "buyer_id")
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = Cart.class, mappedBy = "user")
+//    @JoinColumn(name = "buyer_id")
     private List<Cart> cartList;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Favorite.class)
-    @JoinColumn(name = "buyer_id")
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = Favorite.class, mappedBy = "user")
+//    @JoinColumn(name = "buyer_id")
     private List<Favorite> favoriteList;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Order.class)
-    @JoinColumn(name = "buyer_id")
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = Order.class, mappedBy = "buyer")
+//    @JoinColumn(name = "buyer_id")
     private List<Order> buyerOrderList;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Order.class)
-    @JoinColumn(name = "seller_id")
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = Order.class, mappedBy = "seller")
+//    @JoinColumn(name = "seller_id")
     private List<Order> sellerOrderList;
 }

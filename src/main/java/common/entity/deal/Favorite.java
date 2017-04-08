@@ -18,12 +18,12 @@ import java.io.Serializable;
 public class Favorite implements Serializable {
 
     @Id
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = User.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = User.class)
     @JoinColumn(name = "buyer_id")
     private User user;
 
     @Id
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Item.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Item.class)
     @JoinColumn(name = "item_id")
     private Item item;
 }

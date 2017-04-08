@@ -20,7 +20,7 @@ public class District {
     @Column(name = "district_name")
     private String district_name;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = City.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = City.class)
     @JoinColumn(name = "city_num")
     private City city;
 }

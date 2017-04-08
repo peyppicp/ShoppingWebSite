@@ -1,0 +1,56 @@
+* {
+    padding: 0;
+}
+
+.body-container {
+    width: 100%;
+}
+
+.label-head {
+    width: 100%;
+}
+
+.subA {
+    font-size: small;
+    background-color: #01549b;
+}
+
+.nav.nav-pills.flex-column {
+    background-color: #2D64B3;
+    padding: 0;
+    width: 230px;
+    position: absolute;
+}
+
+.nav.nav-pills.flex-column a {
+    color: #aac5e7;
+}
+
+.nav.nav-pills.flex-column a:hover {
+    color: #daeeff;
+}
+
+#productTable {
+    margin: 5px 0;
+}
+
+.btn-inline {
+    display: inline;
+    padding: 3px 6px;
+    height: inherit;
+    font-size: 12px;
+    margin: auto 2px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.main-content {
+    margin-left: 230px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#ueditor {
+    min-height: 800px;
+    max-height: 1600px;
+}

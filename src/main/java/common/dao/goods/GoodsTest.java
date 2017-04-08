@@ -15,7 +15,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import utils.PrimaryKeyGenerator;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**

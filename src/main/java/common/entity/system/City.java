@@ -23,11 +23,11 @@ public class City {
     @Column(name = "city_name")
     private String city_name;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Province.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Province.class)
     @JoinColumn(name = "prov_num")
     private Province province;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = District.class)
-    @JoinColumn(name = "city_num")
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = District.class, mappedBy = "city")
+//    @JoinColumn(name = "city_num")
     private List<District> districts;
 }

@@ -23,8 +23,8 @@ public class Country {
     @Column(name = "country_name")
     private String country_name;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Province.class)
-    @JoinColumn(name = "country_num")
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = Province.class, mappedBy = "country")
+//    @JoinColumn(name = "country_num")
     private List<Province> provinces;
 
 }

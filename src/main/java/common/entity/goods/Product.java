@@ -35,19 +35,19 @@ public class Product {
     @Type(type = "text")
     private String advertisement;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = User.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = User.class)
     @JoinColumn(name = "seller_id")
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = ProductCatetgory.class)
-    @JoinColumn(name = "product_id")
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = ProductCatetgory.class, mappedBy = "product")
+//    @JoinColumn(name = "product_id")
     private List<ProductCatetgory> productCatetgoryList;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Item.class)
-    @JoinColumn(name = "product_id")
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = Item.class, mappedBy = "product")
+//    @JoinColumn(name = "product_id")
     private List<Item> itemList;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Image.class)
-    @JoinColumn(name = "product_id")
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = Image.class, mappedBy = "product")
+//    @JoinColumn(name = "product_id")
     private List<Image> imageList;
 }

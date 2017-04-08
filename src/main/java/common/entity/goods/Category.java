@@ -25,7 +25,7 @@ public class Category {
     @Column(name = "parent_id")
     private String parent_id;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = ProductCatetgory.class)
-    @JoinColumn(name = "category_id")
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = ProductCatetgory.class, mappedBy = "category")
+//    @JoinColumn(name = "category_id")
     private List<ProductCatetgory> productCatetgoryList;
 }

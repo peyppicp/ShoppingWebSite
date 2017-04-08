@@ -5,5 +5,7 @@ package common.constants;
  */
 public class TokenConstants {
 
-    public static final String APPEND = "Who's your daddy?";
+    public static final String SEED = "Who's your daddy?";
+
+    public static final int time = 1000 * 60 * 60 * 24 * 7;// 保存7天
 }

@@ -3,8 +3,6 @@ package cache;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Created by peyppicp on 2017/3/22.
@@ -27,8 +25,8 @@ public class EasyCache {
                     while (flag) {
                         Iterator<Map.Entry<Object, CacheStatus>> iterator = container.entrySet().iterator();
                         if (!iterator.hasNext()) {
-                            synchronized (runnable) {
-                                runnable.wait();
+                            synchronized (this) {
+                                this.wait();
                             }
                         }
                         while (iterator.hasNext()) {
@@ -65,8 +63,8 @@ public class EasyCache {
         cacheStatus.setStoredTime(System.currentTimeMillis());
         cacheStatus.setValue(value);
         container.put(key, cacheStatus);
-        synchronized (runnable) {
-            runnable.notify();
+        synchronized (this) {
+            this.notify();
         }
     }
 

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增产品</title>
+    <script src="../js/jquery-3.1.1.js"></script>
+    <script src="../js/easyui/jquery.easyui.min.js"></script>
+    <script src="../js/easyui/easyui-lang-zh_CN.js"></script>
+    <script src="js/ue/ueditor.config.js"></script>
+    <script src="js/ue/ueditor.all.js"></script>
+    <link rel="stylesheet" href="../css/easyui/icon.css">
+    <link rel="stylesheet" href="../css/easyui/default/easyui.css">
+    <script>
+        $(function () {
+
+        });
+    </script>
+</head>
+<body>
+
+<div>
+    <table class="easyui-datagrid" title="Basic DataGrid" style="width:900px;height:250px"
+           data-options="singleSelect:true">
+        <thead>
+        <tr>
+            <th data-options="field:'itemid',width:80">Item ID</th>
+            <th data-options="field:'productid',width:100">Product</th>
+            <th data-options="field:'listprice',width:80,align:'right'">List Price</th>
+            <th data-options="field:'attr1',width:250">Attribute</th>
+            <th data-options="field:'status',width:60,align:'center'">Status</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+
+<form id="ff" onsubmit="return false">
+    <div>
+        <table style="margin: 0 auto 0 auto">
+            <tr>
+                <td style="width: 10%">产品ID：</td>
+                <td><input id="productID" class="easyui-textbox" name="productName" type="text" style="width: 768px;"
+                           readonly></td>
+            </tr>
+            <tr>
+                <td>产品名称：</td>
+                <td><input id="productName" class="easyui-textbox" name="productName" type="text" style="width: 768px;"
+                           data-options="required:true,validType:'length[0,32]'"></td>
+            </tr>
+            <tr>
+                <td>产品数量：</td>
+                <td><input id="productNumber" class="easyui-textbox" name="productNumber" type="text"
+                           style="width: 768px;"
+                           data-options="required:true,validType:'length[0,59]'"></td>
+            </tr>
+            <tr>
+                <td>描述：</td>
+                <td><input id="productDescription" type="text" class="easyui-textbox" name="productDescription"
+                           style="width: 768px;"
+                           data-options="required:true"></td>
+            </tr>
+            <tr>
+                <td>详细介绍：</td>
+                <td>
+                    <script id="editor" type="text/plain" style="width:768px;min-height:500px;"></script>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="button" value="提交" onclick="myform()"></td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        function myform() {
+            $.post(
+                    "/add-product.action",
+                    {
+                        productName: $("#productName").val(),
+                        productNumber: $("#productNumber").val(),
+                        productDescription: $("#productDescription").val(),
+                        advertisement: UE.getEditor("editor").getContent()
+                    },
+                    function (data, status) {
+                        alert(data);
+                    }
+            );
+        }
+    </script>
+
+    <script type="text/javascript">
+
+        //实例化编辑器
+        //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+        var ue = UE.getEditor('editor');
+
+
+        function isFocus(e) {
+            alert(UE.getEditor('editor').isFocus());
+            UE.dom.domUtils.preventDefault(e)
+        }
+        function setblur(e) {
+            UE.getEditor('editor').blur();
+            UE.dom.domUtils.preventDefault(e)
+        }
+        function insertHtml() {
+            var value = prompt('插入html代码', '');
+            UE.getEditor('editor').execCommand('insertHtml', value)
+        }
+        function createEditor() {
+            enableBtn();
+            UE.getEditor('editor');
+        }
+        function getAllHtml() {
+            alert(UE.getEditor('editor').getAllHtml())
+        }
+        function getContent() {
+            var arr = [];
+            arr.push("使用editor.getContent()方法可以获得编辑器的内容");
+            arr.push("内容为：");
+            arr.push(UE.getEditor('editor').getContent());
+            alert(arr.join("\n"));
+        }
+        function getPlainTxt() {
+            var arr = [];
+            arr.push("使用editor.getPlainTxt()方法可以获得编辑器的带格式的纯文本内容");
+            arr.push("内容为：");
+            arr.push(UE.getEditor('editor').getPlainTxt());
+            alert(arr.join('\n'))
+        }
+        function setContent(isAppendTo) {
+            var arr = [];
+            arr.push("使用editor.setContent('欢迎使用ueditor')方法可以设置编辑器的内容");
+            UE.getEditor('editor').setContent('欢迎使用ueditor', isAppendTo);
+            alert(arr.join("\n"));
+        }
+        function setDisabled() {
+            UE.getEditor('editor').setDisabled('fullscreen');
+            disableBtn("enable");
+        }
+
+        function setEnabled() {
+            UE.getEditor('editor').setEnabled();
+            enableBtn();
+        }
+
+        function getText() {
+            //当你点击按钮时编辑区域已经失去了焦点，如果直接用getText将不会得到内容，所以要在选回来，然后取得内容
+            var range = UE.getEditor('editor').selection.getRange();
+            range.select();
+            var txt = UE.getEditor('editor').selection.getText();
+            alert(txt)
+        }
+
+        function getContentTxt() {
+            var arr = [];
+            arr.push("使用editor.getContentTxt()方法可以获得编辑器的纯文本内容");
+            arr.push("编辑器的纯文本内容为：");
+            arr.push(UE.getEditor('editor').getContentTxt());
+            alert(arr.join("\n"));
+        }
+        function hasContent() {
+            var arr = [];
+            arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
+            arr.push("判断结果为：");
+            arr.push(UE.getEditor('editor').hasContents());
+            alert(arr.join("\n"));
+        }
+        function setFocus() {
+            UE.getEditor('editor').focus();
+        }
+        function deleteEditor() {
+            disableBtn();
+            UE.getEditor('editor').destroy();
+        }
+        function disableBtn(str) {
+            var div = document.getElementById('btns');
+            var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+            for (var i = 0, btn; btn = btns[i++];) {
+                if (btn.id == str) {
+                    UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+                } else {
+                    btn.setAttribute("disabled", "true");
+                }
+            }
+        }
+        function enableBtn() {
+            var div = document.getElementById('btns');
+            var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+            for (var i = 0, btn; btn = btns[i++];) {
+                UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+            }
+        }
+
+        function getLocalData() {
+            alert(UE.getEditor('editor').execCommand("getlocaldata"));
+        }
+
+        function clearLocalData() {
+            UE.getEditor('editor').execCommand("clearlocaldata");
+            alert("已清空草稿箱")
+        }
+    </script>
+</form>
+</body>
+</html>

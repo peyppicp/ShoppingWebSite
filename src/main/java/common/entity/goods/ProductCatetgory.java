@@ -16,12 +16,12 @@ import java.io.Serializable;
 public class ProductCatetgory implements Serializable {
 
     @Id
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Product.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Product.class)
     @JoinColumn(name = "product_id")
     private Product product;
 
     @Id
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Category.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Category.class)
     @JoinColumn(name = "category_id")
     private Category category;
 }

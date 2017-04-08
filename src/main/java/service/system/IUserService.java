@@ -1,6 +1,5 @@
 package service.system;
 
-import common.dao.BasicDao;
 import common.entity.system.User;
 import common.enums.RegisterEnum;
 import service.BasicService;

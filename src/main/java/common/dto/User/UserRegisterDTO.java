@@ -12,7 +12,7 @@ public class UserRegisterDTO {
     private String token;
 
     // User account name
-    private String user_account;
+    private String user_nickname;
 
     //    Only success/error/ can choose
     private String message;

@@ -18,11 +18,11 @@ public class Image {
 
     private String image_src;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Product.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Product.class)
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Item.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Item.class)
     @JoinColumn(name = "item_id")
     private Item item;
 }

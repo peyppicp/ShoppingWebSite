@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-3.1.1.js"></script>
+    <script src="js/tether.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="dist/jquery.validate.js"></script>
+    <script src="dist/localization/messages_zh.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/custom/boot-back.css">
+    <style>
+        .container {
+            padding-top: 200px;
+        }
+    </style>
+    <script>
+        $(function () {
+
+            $("#inputUserAccount").blur(function () {
+                var userAccount = $("#inputUserAccount").val();
+                $.post(
+                        "/userCheck.action",
+                        {
+                            userAccount: userAccount
+                        },
+                        function (data, status) {
+                            if (status == "success") {
+                                if (data.message == "error") {
+                                    //删除之前遗留
+                                    $(".mustclear").remove();
+                                    $("#inputUserAccount").parent().append(
+                                            "<small class='text-muted text-danger mustclear'>" + data.detailed_message + "</small>");
+                                    $("#submitLoginBtn").addClass("btn-outline-danger disabled").removeClass("btn-outline-primary");
+                                } else {
+                                    $(".mustclear").remove();
+                                    $("#submitLoginBtn").removeClass("btn-outline-danger disabled").addClass("btn-outline-primary");
+                                }
+                            }
+                        }
+                );
+            });
+
+            $("#loginForm").validate({
+                onsubmit: true,
+                onfocusout: function (element) {
+                    $(element).valid();
+                },
+                onkeyup: function (element) {
+                    $(element).valid();
+                },
+                errorElement: "small",
+                onclick: true,
+                success: "valid"
+            });
+        })
+    </script>
+    <script src="js/custom/back-common.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 offset-md-3">
+            <div class="card text-center">
+                <div class="card-header">
+                    商家后台管理系统
+                </div>
+                <div class="card-block">
+                    <form id="loginForm" action="/back-login.action" method="post">
+                        <div class="form-group row">
+                            <label for="inputUserAccount" class="col-sm-2 col-form-label">用户名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputUserAccount" placeholder="请输入用户名"
+                                       name="name" required maxlength="36">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputUserPassword" class="col-sm-2 col-form-label">密码</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" id="inputUserPassword" placeholder="请输入密码"
+                                       name="password" required maxlength="50">
+                            </div>
+                        </div>
+                        <div class="offset-sm-5 col-sm-2">
+                            <button class="btn btn-outline-primary" id="submitLoginBtn" onclick="login()">登陆</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

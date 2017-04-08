@@ -28,11 +28,11 @@ public class Delivery {
 
     private String delivery_inquirynum;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Deliver.class)
-    @JoinColumn(name = "delivery_id")
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = Deliver.class, mappedBy = "delivery")
+//    @JoinColumn(name = "delivery_id")
     private List<Deliver> deliverList;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Order.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Order.class)
     @JoinColumn(name = "order_id")
     private Order order;
 }

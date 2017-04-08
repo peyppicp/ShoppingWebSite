@@ -2,7 +2,6 @@ package common.dao.system.impl;
 
 import common.dao.system.IShipAddressDao;
 import common.entity.system.ShipAddress;
-import common.entity.system.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
