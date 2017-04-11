@@ -27,6 +27,5 @@ public class UeditorController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }

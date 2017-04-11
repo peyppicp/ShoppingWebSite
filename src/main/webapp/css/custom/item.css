@@ -1,0 +1,105 @@
+#headImage img {
+    width: inherit;
+    height: 400px;
+}
+
+#subImage {
+    margin: 0 auto;
+    text-align: center;
+}
+
+#subImage img {
+    margin: 10px 5px;
+    width: 69px;
+    height: 69px;
+}
+
+#itemName {
+    font-weight: bold;
+    font: 黑体;
+}
+
+#description {
+    color: tomato;
+}
+
+hr {
+    margin: 8px;
+}
+
+.productInfo {
+    height: 480px;
+}
+
+.priceLabel {
+    color: #4b5257;
+}
+
+.priceLabel td {
+    padding-right: 36px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#qian {
+    color: #aa1111;
+    font-size: larger;
+}
+
+#priceSpan {
+    color: #aa1111;
+    font-size: larger;
+}
+
+#numberInput {
+    width: 40px;
+    height: 32px;
+}
+
+.span-number {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: smaller;
+    text-align: center;
+    height: 34px;
+    margin-right: 40px;
+}
+
+.span-number .span-number-up {
+    height: 15px;
+    width: 16px;
+    display: block;
+    line-height: 14px;
+    border: 1px solid #a7a6ab;
+    margin-bottom: 2px;
+    cursor: pointer;
+}
+
+.span-number .span-number-down {
+    border: 1px solid #a7a6ab;
+    height: 15px;
+    width: 16px;
+    display: block;
+    line-height: 14px;
+    margin-top: 2px;
+    cursor: pointer;
+}
+
+.inven-span {
+    font-size: smaller;
+    color: #a7a6ab;
+}
+
+#navbar {
+    margin-bottom: 10px;
+}
+
+.favourite-a {
+    text-decoration: none;
+    font-size: smaller;
+    color: #a7a6ab;
+}
+
+.favourite-a:hover {
+    text-decoration: none;
+}

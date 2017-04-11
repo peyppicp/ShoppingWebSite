@@ -7,6 +7,8 @@ import org.apache.commons.codec.digest.HmacUtils;
 import org.json.JSONObject;
 import org.junit.Test;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 /**
@@ -54,5 +56,13 @@ public class TestUtils {
         String signature = HmacUtils.hmacSha256Hex(TokenConstants.SEED, header_payload_base64);
         header_payload_base64 = header_payload_base64 + "." + signature;
         System.out.println(header_payload_base64);
+    }
+
+    @Test
+    public void test4() throws IOException {
+        File file1 = new File("C:/Users/peyppicp/IdeaProjects/ShoppingWebsite/target/shopping/uploadImage/");
+        File file = new File(file1, "3awrasfdas3rfasfaw3fawf.jpg");
+        file.createNewFile();
+        System.out.println();
     }
 }

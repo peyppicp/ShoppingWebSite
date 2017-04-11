@@ -214,6 +214,43 @@ function goUserDetails() {
     alert("haha");
 }
 
-function test() {
-
+function loadCards(contentId) {
+    var temp = "";
+    $.post(
+        "/get-items-card.action",
+        function (data, status) {
+            if (status == "success") {
+                $.each(data, function (i, element) {
+                    temp += "<div class='col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3'>";
+                    temp += "<div class='card'>";
+                    temp += "<a href='item.html?itemId=" + element.item_id + "'" + " target='_blank'>";
+                    temp += "<img class='card-img-top img-fluid' src=" + "\"" + element.img_url + "\"" + ">";
+                    temp += "</a>";
+                    temp += "<div class='card-block'>";
+                    temp += "<div class='clear-float'>";
+                    temp += "<span class='item-rmb-css'>¥</span>";
+                    temp += "<span class='item-price-css'>" + element.price + "</span>";
+                    temp += "<div style='float:right;'>";
+                    temp += "<span class='item-paynum'>" + element.buyer_number + "</span>";
+                    temp += "<span class='item-paynum'>人付款</span>";
+                    temp += "</div>";
+                    temp += "</div>";
+                    temp += "<p class='item-name-css'>";
+                    temp += "<a href='item.html' target='_blank'>" + element.product_name + "</a>";
+                    temp += "</p>";
+                    temp += "<div class='clear-float'>";
+                    temp += "<span class='item-seller' style='float: left;'>";
+                    temp += "<a href='javascript:void(0);' target='_blank'>" + element.seller_name + "</a>";
+                    temp += "</span>";
+                    temp += "<span class='item-seller' style='float: right;'>" + element.seller_address + "</span>";
+                    temp += "</div>";
+                    temp += "</div>";
+                    temp += "</div>";
+                    temp += "</div>";
+                });
+                $("#" + contentId).html("");
+                $("#" + contentId).append(temp);
+            }
+        }
+    );
 }

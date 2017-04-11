@@ -68,8 +68,45 @@ function productManage() {
 }
 
 function itemManage() {
-    $("#productManageDiv").attr("hidden", "hidden");
-    $("#itemManageDiv").removeAttr("hidden");
+    $.post(
+        "/get-items.action",
+        function (data, status) {
+            if (status == "success") {
+                var temp = "";
+                $.each(data, function (i, element) {
+                    i++;
+                    temp += "<tr>";
+                    temp += "<th scope='row'>" + i + "</th>";
+                    temp += "<td>" + element.product_id + "</td>";
+                    temp += "<td>" + element.product_name + "</td>";
+                    temp += "<td>" + element.item_price + "</td>";
+                    temp += "<td>" + element.item_inventory + "</td>";
+                    temp += "<td>" + element.item_type + "</td>";
+                    temp += "<td>" + element.item_size + "</td>";
+                    temp += "<td>" + element.item_breakable + "</td>";
+                    temp += "<td>";
+                    temp += "<a class='btn btn-outline-primary btn-inline' href='javascript:void(0);' onclick='showAddImageItemPage(\"" + element.item_id + "\",\"" + element.product_id + "\")'>设置图片</a>";
+                    temp += "<a class='btn btn-outline-success btn-inline' href='javascript:void(0);' onclick='showUpdateItemPage(\"" + element.item_id + "\")'>修改</a>";
+                    temp += "<a class='btn btn-outline-danger btn-inline' href='javascript:void(0);' onclick='deleteItem(\"" + element.item_id + "\")'>删除</a>";
+                    temp += "</td></tr>";
+                });
+                $("#itemListDiv tbody").html("");
+                $("#itemListDiv tbody").append(temp);
+                $("#productManageDiv").attr("hidden", "hidden");
+                $("#productListDiv").attr("hidden", "hidden");
+                $("#newItemDiv").attr("hidden", "hidden");
+                $("#itemManageDiv").removeAttr("hidden");
+                $("#itemListDiv").removeAttr("hidden");
+            }
+        }
+    );
+}
+
+function showAddImageItemPage(item_id, product_id) {
+    $("#itemListDiv").attr("hidden", "hidden");
+    $("#addImageToItemDiv").removeAttr("hidden");
+    $("#hiddenItemId").val(item_id);
+    $("#hiddenProdcutId").val(product_id);
 }
 
 function showNewProductPage() {
@@ -103,11 +140,17 @@ function previewProduct(product_id) {
 
 function showNewItemPage() {
     $("#productListDiv").removeAttr("hidden");
+    $("#itemListDiv").attr("hidden", "hidden");
 }
 
 function chooseProduct(product_id) {
     $("#newItemDiv").removeAttr("hidden", "hidden");
     $("#inputProductItemID").val(product_id);
+    $("#inputItemPrice").val("");
+    $("#inputItemType").val("");
+    $("#inputItemSize").val("");
+    $("#inputItemInventory").val("");
+    $("#inputItemBreakable").val("");
 }
 
 function getProductList() {
@@ -136,6 +179,32 @@ function getProductList() {
     );
 }
 
+function showUpdateItemPage(item_id) {
+    $("#itemListDiv").attr("hidden", "hidden");
+    $("#newItemDiv").removeAttr("hidden");
+    $.post(
+        "/get-item-id.action",
+        {
+            item_id: item_id
+        },
+        function (data, status) {
+            if (status == "success") {
+                $("#inputProductItemID").val(data.product_id);
+                $("#inputItemPrice").val(data.item_price);
+                $("#inputItemType").val(data.item_type);
+                $("#inputItemSize").val(data.item_size);
+                $("#inputItemInventory").val(data.item_inventory);
+                $("#inputItemBreakable").val(data.item_breakable);
+                $("#inputItemSubmit").removeAttr("onclick");
+                $("#inputItemSubmit").text("修改");
+                $("#inputItemSubmit").unbind("click").click(function () {
+                    updateItem(data.item_id);
+                });
+            }
+        }
+    )
+}
+
 function showUpdateProductPage(product_id) {
     $("#productPreviewDiv").attr("hidden", "hidden");
     $("#productTableDiv").attr("hidden", "hidden");
@@ -155,13 +224,63 @@ function showUpdateProductPage(product_id) {
                     ue.setContent(data.advertisement);
                     $("#inputSubmit").removeAttr("onclick");
                     $("#inputSubmit").text("修改");
-                    $("#inputSubmit").click(function () {
+                    $("#inputSubmit").unbind("click").click(function () {
                         updateProduct(data.product_id);
                     });
                 }
             }
         );
     });
+}
+
+function updateItem(item_id) {
+    $("#itemListDiv").attr("hidden", "hidden");
+    var flag = false;
+    var length = $("#newItemDiv input").length;
+    var temp = 0;
+    $("#newItemDiv input").each(function () {
+        if ($(this).val() == "") {
+            $(this).focus();
+            return false;
+        }
+    });
+
+    $("#newItemDiv input").each(function () {
+        if ($(this).val() != "") {
+            temp++;
+        }
+    });
+
+    if (temp == length) {
+        flag = true;
+    }
+
+    if (flag) {
+        $.post(
+            "/update-item.action",
+            {
+                productId: $("#inputProductItemID").val(),
+                itemPrice: $("#inputItemPrice").val(),
+                itemType: $("#inputItemType").val(),
+                itemSize: $("#inputItemSize").val(),
+                itemInventory: $("#inputItemInventory").val(),
+                itemBreakable: $("#inputItemBreakable").val(),
+                itemId: item_id
+            },
+            function (data, status) {
+                if (status == "success") {
+                    itemManage();
+                    $("#newItemDiv").attr("hidden", "hidden");
+                    $("#inputProductItemID").val("");
+                    $("#inputItemPrice").val("");
+                    $("#inputItemType").val("");
+                    $("#inputItemSize").val("");
+                    $("#inputItemInventory").val("");
+                    $("#inputItemBreakable").val("");
+                }
+            }
+        );
+    }
 }
 
 function updateProduct(product_id) {
@@ -203,7 +322,7 @@ function updateProduct(product_id) {
                     $("#inputProductNumber").val("");
                     $("#inputProductDescription").val("");
                     UE.getEditor("ueditor").ready(function () {
-                        setContent("");
+                        UE.getEditor("ueditor").setContent("");
                     });
                 }
             }
@@ -226,6 +345,7 @@ function deleteProduct(product_id) {
 }
 
 function newItem() {
+    $("#itemListDiv").attr("hidden", "hidden");
     var flag = false;
     var length = $("#newItemDiv input").length;
     var temp = 0;
@@ -255,6 +375,32 @@ function newItem() {
             itemSize: $("#inputItemSize").val(),
             itemInventory: $("#inputItemInventory").val(),
             itemBreakable: $("#inputItemBreakable").val()
+        },
+        function (data, status) {
+            if (status == "success") {
+                itemManage();
+                $("#newItemDiv").attr("hidden", "hidden");
+                $("#inputProductItemID").val("");
+                $("#inputItemPrice").val("");
+                $("#inputItemType").val("");
+                $("#inputItemSize").val("");
+                $("#inputItemInventory").val("");
+                $("#inputItemBreakable").val("");
+            }
+        }
+    );
+}
+
+function deleteItem(item_id) {
+    $.post(
+        "/delete-item.action",
+        {
+            item_id: item_id
+        },
+        function (data, status) {
+            if (status == "success") {
+                itemManage();
+            }
         }
     );
 }
@@ -301,4 +447,29 @@ function newProduct() {
             }
         )
     }
+}
+
+function addImages() {
+    // var formData = new FormData($("#addImagesForm"));
+    // $.ajax(
+    //     {
+    //         type: "post",
+    //         url: "/add-image.action",
+    //         data: formData,
+    //         mimeType: "multipart/form-data",
+    //         contentType: false,
+    //         cache: false,
+    //         processData: false,
+    //         success: function (data) {
+    //             alert(data);
+    //         }
+    //     });
+    $("#addImagesForm").submit();
+    $("#hiddenItemId").val("");
+    $("#hiddenProdcutId").val("");
+    return false;
+}
+
+function test1() {
+    alert(true);
 }

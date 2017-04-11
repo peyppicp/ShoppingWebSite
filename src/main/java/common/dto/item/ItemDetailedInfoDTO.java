@@ -5,16 +5,14 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 /**
- * Created by peyppicp on 2017/4/8.
+ * Created by peyppicp on 2017/4/11.
  */
 @Data
-public class ItemInfoDTO {
+public class ItemDetailedInfoDTO {
 
-    private String product_id;
+    private String item_name;
 
-    private String product_name;
-
-    private String item_id;
+    private String item_description;
 
     private BigDecimal item_price;
 
@@ -24,5 +22,7 @@ public class ItemInfoDTO {
 
     private String item_size;
 
-    private int item_breakable;
+    private String[] image_url;
+
+    private String advertisement;
 }

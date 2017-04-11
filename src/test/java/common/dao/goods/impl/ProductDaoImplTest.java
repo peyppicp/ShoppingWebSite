@@ -1,7 +1,9 @@
 package common.dao.goods.impl;
 
+import common.dao.goods.IImageDao;
 import common.dao.goods.IProductDao;
 import common.dao.system.IUserDao;
+import common.entity.goods.Image;
 import common.entity.goods.Product;
 import common.entity.system.User;
 import org.hibernate.Session;
@@ -35,6 +37,9 @@ public class ProductDaoImplTest {
     @Autowired
     private IUserDao iUserDao;
 
+    @Autowired
+    private IImageDao iImageDao;
+
     @Test
     public void isExist() throws Exception {
 
@@ -46,8 +51,14 @@ public class ProductDaoImplTest {
     }
 
     @Test
+    @Transactional
+    @Rollback(value = false)
     public void getEntity1() throws Exception {
-
+        Product entity = iProductDao.getEntity("b8d50369-b88f-4cde-b2cf-c1bb9182df7d");
+        List<Image> imageList = entity.getImageList();
+        for (Image image : imageList) {
+            iImageDao.deleteEntity(image);
+        }
     }
 
     @Test
