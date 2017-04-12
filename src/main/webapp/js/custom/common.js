@@ -1,3 +1,5 @@
+var user_id = "";
+
 $().ready(function () {
 
     //定义base64全局解码utf8
@@ -87,10 +89,12 @@ $().ready(function () {
             //token 尚未过期
             var payload_encoded = token.split("\.")[1];
             var payload = $.parseJSON($.base64("atob", payload_encoded, true));
+            user_id = payload.user_id;
             $("#loginA").parent().append("<a class='nav-link' href='#' id='userDetailA' onclick='goUserDetails()'>你好，" + $.cookie("user_nickname") + "</a>");
             $("#loginA").remove();
             $("#registerA").parent().append("<a class='nav-link' href='#' id='logoutA' onclick='logout()'>登出</a>");
             $("#registerA").remove();
+            getFavouriteCarNumber();
         }
     });
 });
@@ -130,12 +134,14 @@ function login() {
                         var token = data.token;
                         var payload_encoded = token.split("\.")[1];
                         var payload = $.parseJSON($.base64("atob", payload_encoded, true));
+                        user_id = payload.user_id;
                         $.cookie("token", token);
                         $.cookie("user_nickname", data.user_nickname);
                         $("#loginA").parent().append("<a class='nav-link' href='#' id='userDetailA' onclick='goUserDetails()'>你好，" + data.user_nickname + "</a>");
                         $("#loginA").remove();
                         $("#registerA").parent().append("<a class='nav-link' href='#' id='logoutA' onclick='logout()'>登出</a>");
                         $("#registerA").remove();
+                        getFavouriteCarNumber();
                     }
                 }
             }
@@ -191,6 +197,7 @@ function register() {
                         $("#loginA").remove();
                         $("#registerA").parent().append("<a class='nav-link' href='#' id='logoutA' onclick='logout()'>登出</a>");
                         $("#registerA").remove();
+                        getFavouriteCarNumber();
                     }
                 }
             }
@@ -250,6 +257,18 @@ function loadCards(contentId) {
                 });
                 $("#" + contentId).html("");
                 $("#" + contentId).append(temp);
+            }
+        }
+    );
+}
+
+function getFavouriteCarNumber() {
+    $.post(
+        "/get-favourite-car-number.action",
+        function (data, status) {
+            if (status == "success") {
+                $("#favouriteNum").text(data.favourite_num);
+                $("#carNum").text(data.car_num);
             }
         }
     );
