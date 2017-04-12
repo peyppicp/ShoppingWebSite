@@ -5,6 +5,7 @@ var item_id = "";
 
 $(function () {
     item_id = $.url().param("itemId");
+    //获取数据
     $.post(
         "/get-item-info.action",
         {
@@ -20,8 +21,10 @@ $(function () {
                 var images_url = data.image_url;
                 var temp = "";
                 var head = "<img class='card-img-top img-fluid' src='" + images_url[0] + "'>";
+                // onclick='imageOnClick(\"" + element + "\")'
                 $.each(images_url, function (i, element) {
-                    temp += "<img class='card-img-top img-fluid' src='" + element + "'>";
+                    var src = element.replace(/\\/g, "\\\\");
+                    temp += "<img class='card-img-top img-fluid pointerable' src='" + element + "' onclick='imageOnClick(\"" + src + "\")'>";
                 });
                 $("#headImage").html(head);
                 $("#subImage").html(temp);
@@ -40,7 +43,29 @@ function increase() {
 function decrease() {
     var value = 0;
     value = $("#numberInput").val();
-    if (value >= 1) {
+    if (value >= 2) {
         $("#numberInput").val(value - 1);
+    }
+}
+
+function imageOnClick(img_src) {
+    var head = "<img class='card-img-top img-fluid' src='" + img_src + "'>";
+    $("#headImage").html(head);
+}
+
+function buy() {
+    checkLoginStatus();
+}
+
+function car() {
+
+}
+
+function checkLoginStatus() {
+    var token = $.cookie("token");
+    if (token == undefined || token == null) {
+        $("#loginModal").modal("show");
+    } else {
+        alert("111");
     }
 }

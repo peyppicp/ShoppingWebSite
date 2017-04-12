@@ -28,7 +28,7 @@ hr {
 }
 
 .productInfo {
-    height: 480px;
+    /*height: 480px;*/
 }
 
 .priceLabel {
@@ -54,6 +54,9 @@ hr {
 #numberInput {
     width: 40px;
     height: 32px;
+    display: inline-block;
+    border-width: 2px;
+    text-align: center;
 }
 
 .span-number {
@@ -102,4 +105,8 @@ hr {
 
 .favourite-a:hover {
     text-decoration: none;
+}
+
+.pointerable {
+    cursor: pointer;
 }
