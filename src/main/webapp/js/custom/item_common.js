@@ -58,14 +58,39 @@ function buy() {
 }
 
 function car() {
+    checkLoginStatus();
+    $.post(
+        "/add-cart.action",
+        {
+            item_id: item_id,
+            number: $("#numberInput").val()
+        },
+        function (data, status) {
+            if (status == "success") {
+                getFavouriteCarNumber();
+            }
+        }
+    );
+}
 
+function favourite() {
+    checkLoginStatus();
+    $.post(
+        "/add-favourite.action",
+        {
+            item_id: item_id
+        },
+        function (data, status) {
+            if (status == "success") {
+                getFavouriteCarNumber();
+            }
+        }
+    );
 }
 
 function checkLoginStatus() {
     var token = $.cookie("token");
     if (token == undefined || token == null) {
         $("#loginModal").modal("show");
-    } else {
-        alert("111");
     }
 }
