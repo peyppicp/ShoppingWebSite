@@ -12,9 +12,11 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <!--<link rel="stylesheet" href="css/custom/logincss.css">-->
     <link rel="stylesheet" href="css/custom/common.css">
+    <link rel="stylesheet" href="css/custom/cart.css">
     <style>
         body {
             padding-top: 60px;
+            padding-bottom: 60px;
         }
     </style>
 
@@ -28,11 +30,15 @@
     <script src="js/custom/common.js"></script>
     <script src="dist/localization/messages_zh.js"></script>
     <script src="js/purl.js"></script>
-    <script src="js/custom/item_common.js"></script>
-    <link rel="stylesheet" href="css/custom/item.css">
+    <script src="js/custom/cart-common.js"></script>
+
+    <script>
+        $(function () {
+            getCart();
+        });
+    </script>
 
 </head>
-
 <body>
 <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
     <button class="navbar-toggler navbar-toggler-right d-lg-none" type="button" data-toggle="collapse"
@@ -200,112 +206,106 @@
         <!--Content-->
         <div class="col-sm-8 col-md-8">
             <div class="row">
-                <div class="col-sm-5 d-sm-block d-none">
-                    <div id="imageContent">
-                        <div id="headImage">
-                        </div>
-                        <div>
-                            <div id="subImage"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="productInfo">
-                        <div>
-                            <div id="itemName"></div>
-                        </div>
-                        <div>
-                            <div id="description"></div>
-                        </div>
-                        <hr>
-                        <div>
-                            <div class="priceLabel">
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <span>价格</span>
-                                        </td>
-                                        <td>
-                                            <span id="qian">¥</span>
-                                            <span id="priceSpan"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span>数量</span>
-                                        </td>
-                                        <td>
-                                            <input type="text" id="numberInput" value="1">
-                                            <span class="span-number">
-                                                <span class="span-number-up" onclick="increase();">↑</span>
-                                                <span class="span-number-down" onclick="decrease();">↓</span>
-                                            </span>
-                                            <span class="inven-span">库存还有</span>
-                                            <span class="inven-span" id="inventory"></span>
-                                            <span class="inven-span">件</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span>种类</span>
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span>大小</span>
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-outline-warning" href="javascript:void(0);"
-                                               onclick="buy()" id="buyBtn">点击购买</a>
-                                            <a class="btn btn-outline-danger" href="javascript:void(0);" onclick="car()"
-                                               id="carBtn">加入购物车</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-
-                                        </td>
-                                        <td>
-                                            <a class="favourite-a" href="javascript:void(0);" onclick="favourite()">★点击收藏该商品</a>
-                                        </td>
-                                    </tr>
-                                </table>
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div>
+                                <span class="tl">购物车</span>
+                                <hr>
                             </div>
                         </div>
                     </div>
+                    <form>
 
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <ul class="nav nav-tabs" id="navbar">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="javascript:void(0);">商品详情</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0);">评论</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="javascript:void(0);">售后</a>
-                        </li>
-                    </ul>
-                </div>
-                <div id="main-content">
+                        <div class="row">
+                            <div class="col-1">
+                                <div>全选</div>
+                            </div>
+                            <div class="col-5">
+                                <div>商品信息</div>
+                            </div>
+                            <div class="col-1">
+                                <div>单价</div>
+                            </div>
+                            <div class="col-2">
+                                <div>数量</div>
+                            </div>
+                            <div class="col-1">
+                                <div>金额</div>
+                            </div>
+                            <div class="col-2">
+                                <div>操作</div>
+                            </div>
+                        </div>
+                        <div id="cart-content">
+                            <div class="row">
+                                <div class="col-1">
+                                    <input type="checkbox">
+                                </div>
+                                <div class="col-6">
+                                    <div>11e1d12f23f23f</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-1">
+                                    <input type="checkbox">
+                                </div>
+                                <div class="col-5">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <img src="img/001.jpg" class="img-fluid">
+                                        </div>
+                                        <div class="col-7">
+                                            <span>商品名称商品名称商品名称商品名称商品名称商品名称</span>
+                                            <span>fenlei1fenlei1fenlei1fenlei1fenlei1</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-1">
+                                    <div>
+                                        <span>12</span>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <input type="text" id="numberInput" value="1" class="number-input">
+                                            <span class="span-number">
+                                            <span class="span-number-up" onclick="increase();">↑</span>
+                                            <span class="span-number-down" onclick="decrease();">↓</span>
+                                        </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-1">
+                                    <div>金额</div>
+                                </div>
+                                <div class="col-2">
+                                    <div>操作</div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<nav class="navbar navbar-light bg-faded fixed-bottom">
+    <div class="row">
+        <div class="col-sm-8 col-md-8 offset-sm-3 offset-md-2">
+            <div class="row">
+                <div class="col-9"></div>
+                <div class="col-1">
+                    <span class="navbar-text" id="totalCost">¥0</span>
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-outline-danger" onclick="createOrder();">结算</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
 </body>
 </html>

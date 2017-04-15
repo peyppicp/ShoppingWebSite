@@ -35,7 +35,7 @@ public class ProductController {
     @RequestMapping(value = "/get-product-id.action", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
     public ProductInfoDTO doGetProductById(@RequestParam String product_id) {
-        Product entity = iProductService.getEntity(product_id);
+        Product entity = iProductService.loadEntity(product_id);
 //        TODO 检查返回值是否为空
         ProductInfoDTO productInfoDTO = new ProductInfoDTO();
         productInfoDTO.setProduct_id(entity.getProduct_id());
@@ -50,7 +50,7 @@ public class ProductController {
     @ResponseBody
     public List<ProductInfoDTO> doGetProduct(HttpSession session) {
         User user = (User) session.getAttribute("user");
-        User entity = iUserService.getEntity(user.getUser_id());
+        User entity = iUserService.loadEntity(user.getUser_id());
         List<Product> productList = entity.getProductList();
         List<ProductInfoDTO> productInfoDTOs = new ArrayList<ProductInfoDTO>();
         for (Product product : productList) {
@@ -69,7 +69,7 @@ public class ProductController {
     @ResponseBody
     public List<ProductInfoDTO> doGetProductList(HttpSession session) {
         User user = (User) session.getAttribute("user");
-        User entity = iUserService.getEntity(user.getUser_id());
+        User entity = iUserService.loadEntity(user.getUser_id());
         List<Product> productList = entity.getProductList();
         List<ProductInfoDTO> productInfoDTOs = new ArrayList<ProductInfoDTO>();
         for (Product product : productList) {
@@ -105,7 +105,7 @@ public class ProductController {
     public BaseMessageDTO doModifyProduct(@RequestParam String productId, @RequestParam String productName,
                                           @RequestParam String productDescription, @RequestParam BigDecimal productNumber,
                                           @RequestParam String advertisement) {
-        Product product = iProductService.getEntity(productId);
+        Product product = iProductService.loadEntity(productId);
         product.setProduct_name(productName);
         product.setDescription(productDescription);
         product.setProduct_number(productNumber);
@@ -120,7 +120,7 @@ public class ProductController {
     @RequestMapping(value = "/delete-product.action", method = RequestMethod.POST)
     @ResponseBody
     public BaseMessageDTO doDeleteProduct(@RequestParam String product_id, HttpSession session) {
-        Product product = iProductService.getEntity(product_id);
+        Product product = iProductService.loadEntity(product_id);
         User user = (User) session.getAttribute("user");
         if (product.getUser().getUser_id().equals(user.getUser_id())) {
             iProductService.deleteEntity(product);

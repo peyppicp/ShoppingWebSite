@@ -273,3 +273,29 @@ function getFavouriteCarNumber() {
         }
     );
 }
+
+function checkLoginStatus() {
+    var token = $.cookie("token");
+    if (token == undefined || token == null) {
+        return false;
+    }
+    return true;
+}
+
+function goFavourite() {
+    var flag = checkLoginStatus();
+    if (flag == true) {
+        window.open("favourite.html");
+    } else {
+        $("#loginModal").modal("show");
+    }
+}
+
+function goCart() {
+    var flag = checkLoginStatus();
+    if (flag == true) {
+        window.open("cart.html");
+    } else {
+        $("#loginModal").modal("show");
+    }
+}

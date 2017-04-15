@@ -2,6 +2,8 @@ package service.deal.impl;
 
 import common.dao.deal.ICartDao;
 import common.entity.deal.Cart;
+import common.entity.goods.Item;
+import common.entity.system.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -57,5 +59,9 @@ public class CartServiceImpl implements ICartService {
     @Transactional
     public List<Cart> getEntities(int from, int size) {
         return iCartDao.getEntities(from, size);
+    }
+
+    public int getNumber(Item item, User seller) {
+        return iCartDao.getNumber(item, seller);
     }
 }

@@ -1,4 +1,4 @@
-package controller.system.User;
+package controller.system;
 
 import common.constants.CookieConstants;
 import common.dto.User.UserCheckDTO;

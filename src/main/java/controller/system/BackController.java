@@ -1,4 +1,4 @@
-package controller.system.User;
+package controller.system;
 
 import common.entity.system.User;
 import org.springframework.beans.factory.annotation.Autowired;

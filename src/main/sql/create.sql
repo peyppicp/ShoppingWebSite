@@ -420,12 +420,12 @@ REFERENCES user (user_id)
   ON DELETE RESTRICT
   ON UPDATE RESTRICT;
 
-# CREATE TABLE order_item(
-#   `order_item_id` VARCHAR(36) PRIMARY KEY NOT NULL,
-#   `order_id` VARCHAR(36),
-#   `item_id` VARCHAR(36),
-#   `item_num` INT
-# );
+CREATE TABLE order_item (
+  `order_item_id` VARCHAR(36) PRIMARY KEY NOT NULL,
+  `order_id`      VARCHAR(36) DEFAULT NULL,
+  `item_id`       VARCHAR(36) DEFAULT NULL,
+  `item_num`      INT         DEFAULT NULL
+);
 
 # CREATE TABLE item_comment(
 #   `COMMENT_ID` VARCHAR(36) NOT NULL PRIMARY KEY ,

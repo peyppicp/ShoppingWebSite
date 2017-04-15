@@ -50,7 +50,7 @@ public class ImageController {
             String itemId = multipartRequest.getParameter("itemId");
             String productId = multipartRequest.getParameter("productId");
 //            删除已经存在的产品图片
-            Product product = iProductService.getEntity(productId);
+            Product product = iProductService.loadEntity(productId);
             List<Image> imageList = product.getImageList();
             if (imageList != null && imageList.size() != 0) {
                 for (Image image1 : imageList) {

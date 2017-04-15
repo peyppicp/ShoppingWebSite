@@ -1,0 +1,127 @@
+<!--<div class="col-12 col-sm-12 col-md-12 col-lg-12">-->
+                        <!--<div>-->
+                        <!--<table class="table table-responsive">-->
+                        <!--<thead>-->
+                        <!--<tr>-->
+                        <!--<th>全选</th>-->
+                        <!--<th class="item-info-th">商品信息</th>-->
+                        <!--<th>单价</th>-->
+                        <!--<th>数量</th>-->
+                        <!--<th>金额</th>-->
+                        <!--<th>操作</th>-->
+                        <!--</tr>-->
+                        <!--</thead>-->
+                        <!--<tbody id="table-content">-->
+                        <!--<tr>-->
+                        <!--<td>-->
+                        <!--<input type="checkbox">-->
+                        <!--</td>-->
+                        <!--<td>-->
+                        <!--<div class="seller">-->
+                        <!--<div class="seller-name">-->
+                        <!--<span>店家名字</span>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                        <!--<td>-->
+                        <!--<div class="item-fix-height">-->
+                        <!--<input class="item-price" type="checkbox">-->
+                        <!--</div>-->
+                        <!--</td>-->
+                        <!--<td>-->
+                        <!--<div class="item-fix-height">-->
+                        <!--<div class="clear-float">-->
+                        <!--<div class="left-info">-->
+                        <!--<img src="img/001.jpg" class="img-fluid small-img">-->
+                        <!--</div>-->
+                        <!--<div class="right-info">-->
+                        <!--<span class="right-top-info">商品名称商品名称商品名称商品名称商品名称商品名称</span>-->
+                        <!--<span class="right-bottom-info">fenlei1fenlei1fenlei1fenlei1fenlei1</span>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</td>-->
+                        <!--<td>-->
+                        <!--<div class="item-fix-height">-->
+                        <!--<span class="item-price">12</span>-->
+                        <!--</div>-->
+                        <!--</td>-->
+                        <!--<td>-->
+                        <!--<div class="item-fix-height">-->
+                        <!--<div class="te">-->
+                        <!--<input type="text" id="numberInput" value="1">-->
+                        <!--<span class="span-number">-->
+                        <!--<span class="span-number-up" onclick="increase();">↑</span>-->
+                        <!--<span class="span-number-down" onclick="decrease();">↓</span>-->
+                        <!--</span>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</td>-->
+                        <!--<td>-->
+                        <!--<div class="item-fix-height">-->
+                        <!--<span class="item-price">12$</span>-->
+                        <!--</div>-->
+                        <!--</td>-->
+                        <!--<td>-->
+                        <!--<div class="item-fix-height">-->
+                        <!--<span class="item-price">12$</span>-->
+                        <!--</div>-->
+                        <!--</td>-->
+                        <!--</tr>-->
+                        <!--</tbody>-->
+                        <!--</table>-->
+                        <!--</div>-->
+                        <!--</div>-->
+
+
+
+
+                        $.each(data, function (k, v) {
+                                            var seller_id = k;
+                                            temp += "<tr><td>";
+                                            temp += "<input type='checkbox'>";
+                                            temp += "</td>";
+                                            temp += "<td>";
+                                            temp += "<div class='seller'>";
+                                            temp += "<div class='seller-name'>";
+                                            temp += "<span>" + v[0].seller_name + "</span>";
+                                            temp += "</div></div></td></tr>";
+                                            $.each(v, function (i, element) {
+                                                temp += "<tr><td>";
+                                                temp += "<div class='item-fix-height'>";
+                                                temp += "<input class='item-price' type='checkbox'>";
+                                                temp += "</div></td>";
+                                                temp += "<td>";
+                                                temp += "<div class='item-fix-height'>";
+                                                temp += "<div class='clear-float'>";
+                                                temp += "<div class='left-info'>";
+                                                temp += "<img src='" + element.img_src + "' class='img-fluid small-img'>";
+                                                temp += "</div>";
+                                                temp += "<div class='right-info'>";
+                                                temp += "<span class='right-top-info'>" + element.product_name + "</span>";
+                                                temp += "<span class='right-bottom-info'>" + element.item_type + "</span>";
+                                                temp += "</div></div></div></td>";
+                                                temp += "<td>";
+                                                temp += "<div class='item-fix-height'>";
+                                                temp += "<span class='item-price'>¥" + element.item_price + "</span>";
+                                                temp += "</div></td>";
+                                                temp += "<td>";
+                                                temp += "<div class='item-fix-height'>";
+                                                temp += "<div class='te'>";
+                                                temp += "<input type='text' class='number-input' id='numberInput" + element.item_id + "' value='" + element.number + "'>";
+                                                temp += "<span class='span-number'>";
+                                                temp += "<span class='span-number-up' onclick='increase(\"" + element.item_id + "\",\"" + element.item_price + "\");'>↑</span>";
+                                                temp += "<span class='span-number-down' onclick='decrease(\"" + element.item_id + "\",\"" + element.item_price + "\");'>↓</span>";
+                                                temp += "</span></div></div></td>";
+                                                temp += "<td>";
+                                                temp += "<div class='item-fix-height'>";
+                                                temp += "<span id='total" + element.item_id + "' class='item-price'>" + element.number * element.item_price + "</span>";
+                                                temp += "</div></td>";
+                                                temp += "<td>";
+                                                temp += "<div class='item-fix-height'>";
+                                                temp += "</div></td></tr>";
+                                                $("#table-content").html(temp);
+                                            });
+                                        });

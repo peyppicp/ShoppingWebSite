@@ -14,7 +14,7 @@ import java.util.List;
  * Created by peyppicp on 2017/4/12.
  */
 @Service
-public class FavouriteService implements IFavouriteService {
+public class FavouriteServiceImpl implements IFavouriteService {
 
     @Autowired
     private IFavouriteDao iFavouriteDao;

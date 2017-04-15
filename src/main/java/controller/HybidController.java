@@ -30,7 +30,7 @@ public class HybidController {
     @ResponseBody
     public FavouriteCarNumberDTO doGetFavourite(@CookieValue String token) {
         String user_id = TokenUtils.getUserIdFromToken(token);
-        User user = iUserService.getEntity(user_id);
+        User user = iUserService.loadEntity(user_id);
 //        可写hql进行查询优化 目前的查询相当于select *
         List<Favorite> favoriteList = user.getFavoriteList();
         List<Cart> cartList = user.getCartList();

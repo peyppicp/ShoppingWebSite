@@ -42,7 +42,7 @@ public class ItemController {
     @ResponseBody
     public ItemDetailedInfoDTO doGetItemInfo(String item_id) {
         ItemDetailedInfoDTO dto = new ItemDetailedInfoDTO();
-        Item item = iItemService.getEntity(item_id);
+        Item item = iItemService.loadEntity(item_id);
         Product product = item.getProduct();
         List<Image> imageList = product.getImageList();
         String[] images_url = new String[imageList.size()];
@@ -97,7 +97,7 @@ public class ItemController {
     @ResponseBody
     public List<ItemInfoDTO> doGetItems(HttpSession session) {
         User user = (User) session.getAttribute("user");
-        User entity = iUserService.getEntity(user.getUser_id());
+        User entity = iUserService.loadEntity(user.getUser_id());
         List<Product> productList = entity.getProductList();
         Map<Product, List<Item>> map = new HashMap<Product, List<Item>>();
         ArrayList<ItemInfoDTO> itemInfoDTOArrayList = new ArrayList<ItemInfoDTO>();
@@ -148,7 +148,7 @@ public class ItemController {
                                        @RequestParam String itemType, @RequestParam String itemSize,
                                        @RequestParam int itemInventory, @RequestParam int itemBreakable,
                                        HttpSession session) {
-        Product product = iProductService.getEntity(productId);
+        Product product = iProductService.loadEntity(productId);
         Item item = new Item();
         item.setItem_id(PrimaryKeyGenerator.uuid());
         item.setSize(itemSize);
@@ -164,7 +164,7 @@ public class ItemController {
     @RequestMapping(value = "/delete-item.action", method = RequestMethod.POST)
     @ResponseBody
     public BaseMessageDTO doDeleteItem(@RequestParam String item_id) {
-        Item entity = iItemService.getEntity(item_id);
+        Item entity = iItemService.loadEntity(item_id);
         iItemService.deleteEntity(entity);
         return null;
     }
@@ -172,7 +172,7 @@ public class ItemController {
     @RequestMapping(value = "/get-item-id.action", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
     public ItemInfoDTO doGetItemById(@RequestParam String item_id) {
-        Item item = iItemService.getEntity(item_id);
+        Item item = iItemService.loadEntity(item_id);
         ItemInfoDTO itemInfoDTO = new ItemInfoDTO();
         itemInfoDTO.setItem_id(item.getItem_id());
         itemInfoDTO.setItem_breakable(item.getBreakable());

@@ -1,0 +1,47 @@
+.card {
+    border: none;
+}
+
+.card .card-block {
+    padding: 0;
+    position: relative;
+}
+
+.text-on-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.text-on-image a {
+    border: none;
+}
+
+.card .card-block img {
+    width: inherit;
+    height: 230px;
+}
+
+.dv {
+    padding: 5px 0;
+    display: block;
+    font-weight: bold;
+}
+
+.dv a {
+    color: black;
+}
+
+.dv a:hover {
+    text-decoration: none;
+}
+
+.ds {
+    color: #f43838;
+    text-align: center;
+    font-weight: bold;
+}
+
+.btn-label {
+    color: black;
+}

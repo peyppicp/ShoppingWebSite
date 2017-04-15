@@ -2,6 +2,8 @@ package common.dao.deal.impl;
 
 import common.dao.deal.ICartDao;
 import common.entity.deal.Cart;
+import common.entity.goods.Item;
+import common.entity.system.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,5 +63,13 @@ public class CartDaoImpl implements ICartDao {
         query.setFirstResult(from);
         query.setMaxResults(size);
         return query.list();
+    }
+
+    public int getNumber(Item item, User seller) {
+        String hql = "from Cart where item_id=?1 and buyer_id=?2";
+        Query query = sessionFactory.getCurrentSession().createQuery(hql);
+        query.setParameter(1, item.getItem_id());
+        query.setParameter(2, seller.getUser_id());
+        return ((Cart) query.uniqueResult()).getNumber();
     }
 }
