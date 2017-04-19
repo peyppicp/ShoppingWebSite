@@ -110,3 +110,12 @@ hr {
 .pointerable {
     cursor: pointer;
 }
+
+#main-content {
+    width: inherit;
+}
+
+#main-content img {
+    max-width: 100%;
+    height: auto;
+}

@@ -114,12 +114,25 @@ function showNewProductPage() {
     $("#productTableDiv").attr("hidden", "hidden");
     $("#newProductDiv").removeAttr("hidden");
     var ue = UE.getEditor("ueditor");
+    // UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+    // UE.Editor.prototype.getActionUrl = function (action) {
+    //     if (action == 'uploadimage') {
+    //         return "$(path)/tools/imageController/ue-image-upload.action";
+    //     }
+    // };
     $("#inputProductName").val("");
     $("#inputProductNumber").val("");
     $("#inputProductDescription").val("");
     ue.ready(function () {
         ue.setContent("");
     });
+    if ($("#inputSubmit").text() == "修改") {
+        $("#inputSubmit").unbind("click");
+        $("#inputSubmit").text("提交");
+        $("#inputSubmit").click(function () {
+            newProduct();
+        });
+    }
 }
 
 function previewProduct(product_id) {
@@ -210,6 +223,12 @@ function showUpdateProductPage(product_id) {
     $("#productTableDiv").attr("hidden", "hidden");
     $("#newProductDiv").removeAttr("hidden");
     var ue = UE.getEditor("ueditor");
+    // UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+    // UE.Editor.prototype.getActionUrl = function (action) {
+    //     if (action == 'uploadimage') {
+    //         return "$(path)/tools/imageController/ue-image-upload.action";
+    //     }
+    // };
     ue.ready(function () {
         $.post(
             "/get-product-id.action",
@@ -323,6 +342,12 @@ function updateProduct(product_id) {
                     $("#inputProductDescription").val("");
                     UE.getEditor("ueditor").ready(function () {
                         UE.getEditor("ueditor").setContent("");
+                        // UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+                        // UE.Editor.prototype.getActionUrl = function (action) {
+                        //     if (action == 'uploadimage') {
+                        //         return "$(path)/tools/imageController/ue-image-upload.action";
+                        //     }
+                        // };
                     });
                 }
             }

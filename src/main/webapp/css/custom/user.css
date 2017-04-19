@@ -1,0 +1,29 @@
+#newShipAddressModel td {
+    padding: 0.5em 0.75em;
+}
+
+#newShipAddressModel td input {
+    width: 19em;
+}
+
+.nad {
+    font-size: larger;
+    color: red;
+}
+
+.delete-link {
+    color: red;
+}
+
+.delete-link:hover {
+    text-decoration: none;
+}
+
+.fl {
+    float: left;
+}
+
+.xh {
+    height: auto;
+    line-height: inherit;
+}

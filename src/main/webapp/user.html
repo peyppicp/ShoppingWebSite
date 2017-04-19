@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <!--<link rel="stylesheet" href="css/custom/logincss.css">-->
     <link rel="stylesheet" href="css/custom/common.css">
+    <link rel="stylesheet" href="css/custom/user.css">
     <style>
         body {
             padding-top: 60px;
@@ -27,6 +28,14 @@
     <script src="js/bootstrap.js"></script>
     <script src="js/custom/common.js"></script>
     <script src="dist/localization/messages_zh.js"></script>
+    <script src="js/distpicker/distpicker.min.js"></script>
+    <script src="js/custom/user-common.js"></script>
+
+    <script>
+        $(function () {
+            loadShips();
+        });
+    </script>
 
 </head>
 <body>
@@ -189,6 +198,68 @@
     </div>
 </div>
 
+<div class="modal fade" id="newShipAddressModel" tabindex="-1" role="dialog" aria-labelledby="newShipAddressModel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">新增收货地址</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table>
+                    <tr>
+                        <td>国家</td>
+                        <td>
+                            <select id="country">
+                                <option>中国</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>省市区</td>
+                        <td>
+                            <div data-toggle="distpicker">
+                                <select id="province" data-province="选择省"></select>
+                                <select id="city" data-city="选择市"></select>
+                                <select id="district" data-district="选择区"></select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>邮编</td>
+                        <td><input id="zip" type="text" maxlength="6"></td>
+                    </tr>
+                    <tr>
+                        <td>联系方式</td>
+                        <td><input id="phone" type="text" maxlength="15"></td>
+                    </tr>
+                    <tr>
+                        <td>姓名</td>
+                        <td><input id="name" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            详细地址
+                        </td>
+                        <td>
+                            <input id="detailed" type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button class="btn btn-outline-primary" onclick="createShip();">创建</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container-fluid">
 
 
@@ -196,8 +267,24 @@
         <div class="col-sm-3 col-md-2"></div>
 
         <!--Content-->
-        <div class="col-sm-8 col-md-8">
-            收货地址
+        <div class="col-sm-8 col-md-8 pl-0 pr-0">
+            <div>
+                <span class="nad">现有地址</span>
+            </div>
+            <hr>
+            <div id="shipContent">
+                <div>
+                    <p class="mb-1">1111111111111111111111111111111111111111111111</p>
+                    <p class="mb-1">
+                        详细地址：23423rawfawfaw34fawfasfas3fawsfaws3fdas3daws3faswfasfaw3sfszfvege5hre6jr567ir56u7jr56tjr5h6rhdrh5</p>
+                </div>
+            </div>
+            <div>
+                <a class="btn btn-outline-primary" href="#" data-toggle="modal"
+                   data-target="#newShipAddressModel">新增收货地址</a>
+            </div>
+
+
         </div>
     </div>
 </div>

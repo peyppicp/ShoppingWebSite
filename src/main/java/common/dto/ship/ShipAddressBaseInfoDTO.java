@@ -20,4 +20,11 @@ public class ShipAddressBaseInfoDTO {
 
     private BigDecimal zip;
 
+    private String address;
+
+    private String phonenum;
+
+    private String name;
+
+    private String id;
 }

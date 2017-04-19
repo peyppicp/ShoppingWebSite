@@ -218,7 +218,7 @@ function logout() {
 
 //TODO
 function goUserDetails() {
-    alert("haha");
+    window.open("user.html");
 }
 
 function loadCards(contentId) {
