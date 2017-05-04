@@ -7,6 +7,7 @@ import common.dto.item.ItemInfoDTO;
 import common.entity.goods.Image;
 import common.entity.goods.Item;
 import common.entity.goods.Product;
+import common.entity.system.ShipAddress;
 import common.entity.system.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -79,11 +80,13 @@ public class ItemController {
             if (imageList == null || imageList.size() == 0) {
                 continue;
             }
+            ShipAddress shipAddress = user.getShipAddresses().get(0);
+            String address = shipAddress.getProvince() + shipAddress.getCity();
             String product_name = product.getProduct_name();
             itemCardInfoDTO.setProduct_name(product_name);
             itemCardInfoDTO.setPrice(item.getPrice());
-            itemCardInfoDTO.setBuyer_number(10);
-            itemCardInfoDTO.setSeller_address("TestAddresss");
+            itemCardInfoDTO.setBuyer_number(new Random().nextInt(1000));
+            itemCardInfoDTO.setSeller_address(address);
             itemCardInfoDTO.setSeller_name(user.getUser_account());
             itemCardInfoDTO.setImg_url(imageList.get(0).getImage_src());
             itemCardInfoDTO.setItem_id(item.getItem_id());

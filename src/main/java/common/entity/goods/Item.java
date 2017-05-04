@@ -37,18 +37,15 @@ public class Item {
     private Product product;
 
     @OneToMany(fetch = FetchType.LAZY, targetEntity = Image.class, mappedBy = "item")
-//    @JoinColumn(name = "item_id")
     private List<Image> imageList;
 
     @OneToMany(fetch = FetchType.LAZY, targetEntity = Cart.class, mappedBy = "item")
-//    @JoinColumn(name = "item_id")
     private List<Cart> cartList;
 
     @OneToMany(fetch = FetchType.LAZY, targetEntity = Favorite.class, mappedBy = "item")
-//    @JoinColumn(name = "item_id")
     private List<Favorite> favoriteList;
 
     @OneToMany(fetch = FetchType.LAZY, targetEntity = Deliver.class, mappedBy = "item")
-//    @JoinColumn(name = "item_id")
+//    @JoinColumn(name =
     private List<Deliver> deliverList;
 }

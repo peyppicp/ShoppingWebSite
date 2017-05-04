@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "image")
-
 public class Image {
 
     @Id
